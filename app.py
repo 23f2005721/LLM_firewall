@@ -173,7 +173,13 @@ def firewall():
 
 @app.route("/terraform/plan", methods=["POST"])
 def terraform_plan():
-    data = request.get_json()
+    data = request.get_json(silent=True)
+
+    if not isinstance(data, dict):
+        return jsonify({
+            "decision": "block",
+            "reason": "INVALID_SCHEMA"
+            })
 
     # Implement checks in exact order
 
