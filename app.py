@@ -171,6 +171,19 @@ def firewall():
         "reason":"ALLOW"
     })
 
+@app.route("/terraform/plan", methods=["POST"])
+def terraform_plan():
+    data = request.get_json()
+
+    # Implement checks in exact order
+
+    return jsonify({
+        "decision":"approve",
+        "reason":"APPROVE"
+    })
+
+
+
 
 if __name__ == "__main__":
     app.run()
